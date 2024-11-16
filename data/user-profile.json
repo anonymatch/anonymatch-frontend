@@ -1,0 +1,49 @@
+{
+    "user": {
+      "name": "Revilla",
+      "username": "@revilla",
+      "avatar": "/assets/users/revilla.webp",  
+      "bio": "Soy Revilla, me gusta programar y aprender cosas nuevas." 
+    },
+    "matches": [
+      {
+        "name": "Dorian",
+        "age": 28,
+        "bio": "Loves hiking and reading",
+        "image": "/assets/users/dorian.webp" 
+      },
+      {
+        "name": "Emily",
+        "age": 25,
+        "bio": "Enjoys cooking and traveling",
+        "image": "/assets/users/emily.webp" 
+      },
+      {
+        "name": "Maria",
+        "age": 30,
+        "bio": "Passionate about photography and art.",
+        "image": "/assets/users/maria.webp" 
+      }
+    ],
+    "pastDates": [
+      {
+        "name": "Jane",
+        "age": 28,
+        "bio": "Loves hiking and reading",
+        "image": "/assets/users/jane.webp" 
+      },
+      {
+        "name": "Emily",
+        "age": 25,
+        "bio": "Enjoys cooking and traveling",
+        "image": "/assets/users/emily.webp" 
+      },
+      {
+        "name": "Pedro",
+        "age": 32,
+        "bio": "Enthusiastic about technology and music.",
+        "image": "/assets/users/pedro.png" 
+      }
+  
+    ]
+  }

@@ -7,52 +7,58 @@ import { ArrowLeft, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import BackButton from "@/components/BackButton";
+import matchProfileData from "@/data/match-profile.json";
 
-export default function Component() {
-  const sharedPreferences = ["Web3", "Party", "Gym", "Cats"];
-  const sharedVisions = ["Parenting", "Travel", "Spirituality", "Ecology"];
+export default function Component() { // Asegúrate de que profileData tiene el tipo correcto
 
-  const dateIdeas = [
-    { title: "Temple of Dawn", image: "/placeholder.svg?height=200&width=300" },
-    {
-      title: "Picnic in Lumpini",
-      image: "/placeholder.svg?height=200&width=300",
-    },
-  ];
+  if (!matchProfileData) {
+    return <p>Cargando datos del perfil...</p>; // Manejo de datos no disponibles
+  }
 
-  const galleryImages = Array(8).fill("/placeholder.svg?height=300&width=300");
+  const {
+    name,
+    age,
+    coverImage,
+    profileImage,
+    bio,
+    sharedPreferences,
+    sharedVisions,
+    dateIdeas,
+    galleryImages,
+  } = matchProfileData.profile; // Acceder a los datos del perfil
+
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b">
         <div className="flex items-center justify-between px-4 py-2">
-          <BackButton/>
+          <BackButton />
           <div className="flex items-center gap-2">
             <Heart className="h-6 w-6 text-[#FF4081]" />
             <span className="font-bold text-[#FF4081]">ANONYMATCH</span>
           </div>
-          <div className="w-10" /> {/* Spacer for alignment */}
+          <div className="w-10" />
         </div>
       </header>
 
       <main className="pb-20">
         {/* Profile Hero */}
         <div className="relative h-96">
-          <Image
-            src="/placeholder.svg?height=400&width=600"
-            alt="Profile cover"
-            fill
-            className="object-cover"
-          />
+          <Image src={coverImage} alt="Profile cover" fill className="object-cover" />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
-            <h1 className="text-3xl font-bold text-white">Dorian Pasternak</h1>
-            <p className="text-xl text-white">Age 30</p>
+            <h1 className="text-3xl font-bold text-white">{name}</h1>
+            <p className="text-xl text-white">Age {age}</p>
           </div>
         </div>
 
         {/* Profile Content */}
         <div className="px-4 space-y-8 mt-6">
+          <section>
+            <h2 className="text-xl font-bold mb-3">Bio</h2>
+            <p className="text-gray-600">{bio}</p> {/* Mostrar la biografía */}
+          </section>
+
           {/* Shared Preferences */}
           <section>
             <h2 className="text-xl font-bold mb-3">Shared Preferences</h2>
@@ -63,10 +69,6 @@ export default function Component() {
                 </Badge>
               ))}
             </div>
-            <p className="mt-3 text-gray-600">
-              Dorian also enjoys dancing, esoterism, volunteering, party and
-              web3 technology
-            </p>
           </section>
 
           {/* Shared Visions */}
@@ -79,23 +81,14 @@ export default function Component() {
                 </Badge>
               ))}
             </div>
-            <p className="mt-3 text-gray-600">
-              Dorian is also into open relationships, non monogamous ethical
-              relationships, exploring dating men and woman
-            </p>
           </section>
 
           {/* Date Ideas */}
           <section>
-            <h2 className="text-xl font-bold mb-3">
-              Date ideas and local places you might enjoy together
-            </h2>
+            <h2 className="text-xl font-bold mb-3">Date Ideas</h2>
             <div className="grid grid-cols-2 gap-4">
-              {dateIdeas.map((idea, index) => (
-                <div
-                  key={index}
-                  className="relative rounded-lg overflow-hidden"
-                >
+              {dateIdeas.map((idea) => (
+                <div key={idea.title} className="relative rounded-lg overflow-hidden">
                   <Image
                     src={idea.image}
                     alt={idea.title}
@@ -113,7 +106,7 @@ export default function Component() {
 
           {/* Gallery */}
           <section>
-            <h2 className="text-xl font-bold mb-3">This is Dorian</h2>
+            <h2 className="text-xl font-bold mb-3">Gallery</h2>
             <div className="grid grid-cols-2 gap-2">
               {galleryImages.map((src, index) => (
                 <motion.div
@@ -123,12 +116,7 @@ export default function Component() {
                   transition={{ delay: index * 0.1 }}
                   className="relative aspect-square rounded-lg overflow-hidden"
                 >
-                  <Image
-                    src={src}
-                    alt={`Gallery image ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={src} alt={`Gallery image ${index + 1}`} fill className="object-cover" />
                 </motion.div>
               ))}
             </div>

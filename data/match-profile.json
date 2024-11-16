@@ -1,0 +1,44 @@
+{
+  "profile": {
+    "name": "Dorian Pasternak",
+    "age": 30,
+    "coverImage": "/assets/users/dorian.webp",  
+    "profileImage": "/assets/users//dorian.webp",
+    "bio": "Soy Dorian, me apasiona el web3, las fiestas y explorar nuevas experiencias.  Estoy abierto a relaciones no monógamas éticas y a explorar citas con hombres y mujeres.",
+    "sharedPreferences": [
+      "Web3",
+      "Party",
+      "Gym",
+      "Cats",
+      "Dancing",
+      "Esoterism",
+      "Volunteering"
+    ],
+    "sharedVisions": [
+      "Parenting",
+      "Travel",
+      "Spirituality",
+      "Ecology",
+      "Open Relationships",
+      "Non-Monogamous Relationships"
+    ],
+    "dateIdeas": [
+      {
+        "title": "Temple of Dawn",
+        "image": "/assets/ideas/temple.webp" 
+      },
+      {
+        "title": "Picnic in Lumpini Park",
+        "image": "/assets/ideas/picnic.webp"  
+      }
+    ],
+    "galleryImages": [
+      "/assets/galleryImages/dorian1.webp",
+      "/assets/galleryImages/dorian2.webp",
+      "/assets/galleryImages/dorian3.webp",
+      "/assets/galleryImages/dorian4.webp",
+      "/assets/galleryImages/dorian5.webp",
+      "/assets/galleryImages/dorian6.webp"
+    ]
+  }
+}

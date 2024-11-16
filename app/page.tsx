@@ -11,7 +11,7 @@ export default function Component() {
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-12">
       {/* Header */}
-      <Header />
+      {/* <Header /> */}
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -50,7 +50,7 @@ export default function Component() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <Link href="/onboarding-1">
+          <Link href="/onboarding-1-ideal-match">
             <Button
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}

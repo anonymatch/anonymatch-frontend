@@ -107,7 +107,7 @@ export default function Component() {
           </div>
 
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Link href="/onboarding-2">
+            <Link href="/onboarding-2-create-profile">
               <Button
                 type="submit"
                 className="w-full h-12 bg-[#FF4081] hover:bg-[#FF6B6B] text-white rounded-full text-lg font-semibold"

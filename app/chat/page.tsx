@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ArrowLeft, MoreVertical, Mic, Smile, Send } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation"; // Usage: App router
 import BackButton from "@/components/BackButton";
 
@@ -15,7 +14,7 @@ export default function Component() {
   const [messages, setMessages] = useState([
     {
       id: 1,
-      sender: "Emily",
+      sender: "Dorian",
       content: "Hey, looking forward to our date!",
       timestamp: "12:30 PM",
       isMe: false,
@@ -56,7 +55,6 @@ export default function Component() {
       setMessage("");
     }
   };
-  const router = useRouter();
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
@@ -65,7 +63,7 @@ export default function Component() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {/* BACK BUTTON */}
-            <BackButton/>
+            <BackButton />
             <span className="font-semibold">Chat</span>
           </div>
           <button className="p-2">
@@ -79,14 +77,14 @@ export default function Component() {
         <div className="flex items-center gap-4">
           <Avatar className="w-16 h-16">
             <AvatarImage
-              src="/placeholder.svg?height=64&width=64"
-              alt="Emily Johnson"
+              src="/assets/users/dorian.webp"
+              alt="Dorian"
             />
             <AvatarFallback>EJ</AvatarFallback>
           </Avatar>
           <div>
-            <h1 className="text-xl font-bold">Emily Johnson</h1>
-            <p className="text-sm text-gray-500">@matched_date</p>
+            <h1 className="text-xl font-bold">Dorian</h1>
+            <p className="text-sm text-gray-500">@dorian</p>
           </div>
         </div>
       </div>

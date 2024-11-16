@@ -8,15 +8,45 @@ import { Home, MessageSquare, User, Settings } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import BottomNavigation from "@/components/BottomNavigation";
+import { useState, useEffect } from "react";
+import userProfileData from "@/data/user-profile.json";
 
 export default function Component() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // TODO: CALL TO API
+        // const response = await fetch('/api/profile'); // Reemplaza con la URL de tu API
+        // if (!response.ok) {
+        //   throw new Error(`HTTP error! status: ${response.status}`);
+        // }
+        // const jsonData = await response.json();
+        setData(userProfileData);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!data) return <p>No data</p>;
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Header */}
       <div className="sticky top-0 z-50 bg-white border-b px-4 py-3">
         <div className="flex items-center justify-between">
           <User className="w-6 h-6" />
-          <h1 className="text-lg font-semibold">Welcome Back, John!</h1>
+          <h1 className="text-lg font-semibold">Welcome Back, {data.user.name}!</h1>
           <Settings className="w-6 h-6" />
         </div>
       </div>
@@ -27,14 +57,14 @@ export default function Component() {
           <div className="flex flex-col items-center space-y-2">
             <Avatar className="w-24 h-24 border-4 border-[#FF4081]">
               <AvatarImage
-                src="/placeholder.svg?height=96&width=96"
-                alt="John Doe"
+                src={data.user.avatar}
+                alt="Revilla"
               />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <div className="text-center">
-              <h2 className="text-xl font-bold">John Doe</h2>
-              <p className="text-sm text-gray-500">@john_doe</p>
+              <h2 className="text-xl font-bold">{data.user.name}</h2>
+              <p className="text-sm text-gray-500">{data.user.username}</p>
             </div>
           </div>
 
@@ -42,20 +72,7 @@ export default function Component() {
           <div className="space-y-4">
             <h3 className="text-xl font-bold">Matches Suggested for You</h3>
             <div className="space-y-4">
-              {[
-                {
-                  name: "Jane",
-                  age: 28,
-                  bio: "Loves hiking and reading",
-                  image: "/placeholder.svg?height=300&width=400",
-                },
-                {
-                  name: "Emily",
-                  age: 25,
-                  bio: "Enjoys cooking and traveling",
-                  image: "/placeholder.svg?height=300&width=400",
-                },
-              ].map((match, index) => (
+              {data.matches.map((match, index) => (
                 <Card key={index} className="overflow-hidden">
                   <CardContent className="p-0">
                     <div className="relative h-48 w-full">
@@ -94,20 +111,7 @@ export default function Component() {
           <div className="space-y-4">
             <h3 className="text-xl font-bold">People You've Dated</h3>
             <div className="grid grid-cols-2 gap-4">
-              {[
-                {
-                  name: "Anna",
-                  age: 27,
-                  description: "Had a great time at the beach",
-                  image: "/placeholder.svg?height=200&width=200",
-                },
-                {
-                  name: "Michael",
-                  age: 30,
-                  description: "Went to a concert",
-                  image: "/placeholder.svg?height=200&width=200",
-                },
-              ].map((date, index) => (
+              {data.pastDates.map((date, index) => (
                 <Card key={index} className="overflow-hidden">
                   <CardContent className="p-0">
                     <div className="relative h-32 w-full">

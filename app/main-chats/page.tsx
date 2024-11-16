@@ -25,11 +25,11 @@ export default function Component() {
           {/* Profile Section */}
           <div className="flex flex-col items-center space-y-2">
             <Avatar className="w-24 h-24 border-4 border-[#FF4081]">
-              <AvatarImage src="/placeholder.svg?height=96&width=96" alt="John Doe" />
+              <AvatarImage src="/placeholder.svg?height=96&width=96" alt="Revilla" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <div className="text-center">
-              <h2 className="text-xl font-bold">John Doe</h2>
+              <h2 className="text-xl font-bold">Revilla</h2>
               <p className="text-sm text-gray-500">@john_doe</p>
             </div>
           </div>
