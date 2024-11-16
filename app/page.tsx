@@ -4,12 +4,15 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link"; // Importa el componente Link
+import Header from "@/components/header";
 
 export default function Component() {
   const [isHovered, setIsHovered] = useState(false);
-
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center px-4 py-12">
+      {/* Header */}
+      <Header />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
