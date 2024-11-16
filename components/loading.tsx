@@ -4,6 +4,7 @@
   "use client";
   import { motion } from "motion/react";
   import styles from "./loading.module.css";
+import { Heart } from "lucide-react";
   
   const Loading = () => {
     return (
@@ -24,7 +25,32 @@
             }}
           />
         ))}
+             {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-pink-100"
+            initial={{
+              opacity: 0,
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+            }}
+            animate={{
+              opacity: [0, 1, 0],
+              y: [0, -100],
+              x: Math.sin(i) * 50
+            }}
+            transition={{
+              duration: 2 + Math.random() * 2,
+              repeat: Infinity,
+              delay: i * 0.01,
+              ease: "easeInOut"
+            }}
+          >
+            <Heart className="w-8 h-8" />
+          </motion.div>
+        ))}
       </div>
+      
     );
   };
   

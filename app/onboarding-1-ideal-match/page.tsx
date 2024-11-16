@@ -31,7 +31,7 @@ export default function Component() {
   useEffect(() => {
     setTimeout(() => { // Simula una carga asíncrona
       setIsLoading(false);
-    }, 300);
+    }, 3000);
   }, []);
 
 
