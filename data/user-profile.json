@@ -37,12 +37,6 @@
         "age": 25,
         "bio": "Enjoys cooking and traveling",
         "image": "/assets/users/emily.webp" 
-      },
-      {
-        "name": "Pedro",
-        "age": 32,
-        "bio": "Enthusiastic about technology and music.",
-        "image": "/assets/users/pedro.png" 
       }
   
     ]

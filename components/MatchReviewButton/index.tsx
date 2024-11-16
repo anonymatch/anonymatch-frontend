@@ -5,13 +5,14 @@ import {
   Tokens,
   PayCommandInput,
 } from "@worldcoin/minikit-js";
+import { Button } from "../ui/button";
 
 const sendPayment = async () => {
   try {
     const res = await fetch(`/api/initiate-payment`, {
       method: "POST",
-      });
-    console.log('🚀 ~ sendPayment ~ res:', res)
+    });
+    console.log("🚀 ~ sendPayment ~ res:", res);
 
     const { id } = await res.json();
 
@@ -70,10 +71,14 @@ const handlePay = async () => {
   }
 };
 
-export const PayBlock = () => {
+export const MatchReviewButton = () => {
   return (
-    <button className="bg-blue-500 p-4" onClick={handlePay}>
-      Pay
-    </button>
+    <Button
+      className="w-full bg-[#FF4081] hover:bg-[#FF6B6B] text-white"
+      variant="outline"
+      onClick={handlePay}
+    >
+      Match Review
+    </Button>
   );
 };

@@ -8,8 +8,10 @@ import Image from "next/image";
 import Link from "next/link";
 import BackButton from "@/components/BackButton";
 import matchProfileData from "@/data/match-profile.json";
+import { PayBlock } from "@/components/Pay";
 
-export default function Component() { // Asegúrate de que profileData tiene el tipo correcto
+export default function Component() {
+  // Asegúrate de que profileData tiene el tipo correcto
 
   if (!matchProfileData) {
     return <p>Cargando datos del perfil...</p>; // Manejo de datos no disponibles
@@ -26,7 +28,6 @@ export default function Component() { // Asegúrate de que profileData tiene el 
     dateIdeas,
     galleryImages,
   } = matchProfileData.profile; // Acceder a los datos del perfil
-
 
   return (
     <div className="min-h-screen bg-white">
@@ -45,7 +46,12 @@ export default function Component() { // Asegúrate de que profileData tiene el 
       <main className="pb-20">
         {/* Profile Hero */}
         <div className="relative h-96">
-          <Image src={coverImage} alt="Profile cover" fill className="object-cover" />
+          <Image
+            src={coverImage}
+            alt="Profile cover"
+            fill
+            className="object-cover"
+          />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
             <h1 className="text-3xl font-bold text-white">{name}</h1>
             <p className="text-xl text-white">Age {age}</p>
@@ -88,7 +94,10 @@ export default function Component() { // Asegúrate de que profileData tiene el 
             <h2 className="text-xl font-bold mb-3">Date Ideas</h2>
             <div className="grid grid-cols-2 gap-4">
               {dateIdeas.map((idea) => (
-                <div key={idea.title} className="relative rounded-lg overflow-hidden">
+                <div
+                  key={idea.title}
+                  className="relative rounded-lg overflow-hidden"
+                >
                   <Image
                     src={idea.image}
                     alt={idea.title}
@@ -116,7 +125,12 @@ export default function Component() { // Asegúrate de que profileData tiene el 
                   transition={{ delay: index * 0.1 }}
                   className="relative aspect-square rounded-lg overflow-hidden"
                 >
-                  <Image src={src} alt={`Gallery image ${index + 1}`} fill className="object-cover" />
+                  <Image
+                    src={src}
+                    alt={`Gallery image ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
                 </motion.div>
               ))}
             </div>
@@ -133,6 +147,18 @@ export default function Component() { // Asegúrate de que profileData tiene el 
               onClick={() => console.log("Date requested")}
             >
               Date Request
+            </Button>
+          </Link>
+        </motion.div>
+      
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <Link href="/match-review">
+            <Button
+              className="w-full h-12 mt-4  rounded-full text-lg font-semibold"
+              variant="outline"
+              onClick={() => console.log("Date requested")}
+            >
+              Match Review
             </Button>
           </Link>
         </motion.div>
