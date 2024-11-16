@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link"; // Importa el componente Link
 
 export default function Component() {
   const [isHovered, setIsHovered] = useState(false);
@@ -19,10 +20,10 @@ export default function Component() {
         <motion.div
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300 }}
-          className="relative w-full h-60 mx-auto"
+          className="relative w-full h-80 mx-auto"
         >
           <img
-            src="/assets/logo.svg"
+            src="/assets/logo.png"
             alt="ANONYMATCH Logo"
             className="w-full h-full object-contain"
           />
@@ -46,19 +47,21 @@ export default function Component() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <Button
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className={`
+          <Link href="/onboarding">
+            <Button
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className={`
               w-48 h-14 text-lg font-semibold rounded-full 
               transition-all duration-300 transform
               ${isHovered ? "bg-[#FF6B6B]" : "bg-[#FF4081]"}
               hover:scale-105 hover:shadow-lg
               text-white
             `}
-          >
-            START
-          </Button>
+            >
+              START
+            </Button>
+          </Link>
         </motion.div>
       </motion.div>
     </div>
