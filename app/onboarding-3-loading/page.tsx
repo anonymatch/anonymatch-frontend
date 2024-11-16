@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { Heart } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react';
+import Loading from "@/components/loading";
 export default function Component() {
   const router = useRouter();
 
@@ -46,24 +47,7 @@ export default function Component() {
           </h2>
           
           {/* Loading Animation */}
-          <div className="flex justify-center space-x-3">
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="w-3 h-3 bg-[#FF4081] rounded-full"
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.5, 1, 0.5]
-                }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  delay: i * 0.2,
-                  ease: "easeInOut"
-                }}
-              />
-            ))}
-          </div>
+         <Loading/>
         </motion.div>
 
         {/* Background Hearts Animation */}

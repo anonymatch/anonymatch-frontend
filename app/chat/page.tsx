@@ -8,8 +8,17 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ArrowLeft, MoreVertical, Mic, Smile, Send } from "lucide-react";
 import { useRouter } from "next/navigation"; // Usage: App router
 import BackButton from "@/components/BackButton";
+import Loading from "@/components/loading";
 
 export default function Component() {
+  const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
+  useEffect(() => {
+    setTimeout(() => {
+      // Simula una carga asíncrona
+      setIsLoading(false);
+    }, 300);
+  }, []);
+
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([
     {
@@ -76,10 +85,7 @@ export default function Component() {
       <div className="bg-white px-4 py-6 border-b">
         <div className="flex items-center gap-4">
           <Avatar className="w-16 h-16">
-            <AvatarImage
-              src="/assets/users/dorian.webp"
-              alt="Dorian"
-            />
+            <AvatarImage src="/assets/users/dorian.webp" alt="Dorian" />
             <AvatarFallback>EJ</AvatarFallback>
           </Avatar>
           <div>
@@ -90,54 +96,61 @@ export default function Component() {
       </div>
 
       {/* Chat Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((msg) => (
-          <motion.div
-            key={msg.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`flex ${msg.isMe ? "justify-end" : "justify-start"}`}
-          >
-            <div className="flex gap-2 max-w-[80%]">
-              {!msg.isMe && (
-                <Avatar className="w-8 h-8">
-                  <AvatarImage
-                    src="/placeholder.svg?height=32&width=32"
-                    alt={msg.sender}
-                  />
-                  <AvatarFallback>{msg.sender[0]}</AvatarFallback>
-                </Avatar>
-              )}
-              <div
-                className={`rounded-2xl px-4 py-2 ${
-                  msg.isMe
-                    ? "bg-[#FF4081] text-white"
-                    : "bg-gray-100 text-gray-900"
-                }`}
-              >
-                <p>{msg.content}</p>
-                <p
-                  className={`text-xs mt-1 ${
-                    msg.isMe ? "text-pink-100" : "text-gray-500"
+
+      {isLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <Loading />
+        </div>
+      ) : (
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {messages.map((msg) => (
+            <motion.div
+              key={msg.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`flex ${msg.isMe ? "justify-end" : "justify-start"}`}
+            >
+              <div className="flex gap-2 max-w-[80%]">
+                {!msg.isMe && (
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage
+                      src="/placeholder.svg?height=32&width=32"
+                      alt={msg.sender}
+                    />
+                    <AvatarFallback>{msg.sender[0]}</AvatarFallback>
+                  </Avatar>
+                )}
+                <div
+                  className={`rounded-2xl px-4 py-2 ${
+                    msg.isMe
+                      ? "bg-[#FF4081] text-white"
+                      : "bg-gray-100 text-gray-900"
                   }`}
                 >
-                  {msg.timestamp}
-                </p>
+                  <p>{msg.content}</p>
+                  <p
+                    className={`text-xs mt-1 ${
+                      msg.isMe ? "text-pink-100" : "text-gray-500"
+                    }`}
+                  >
+                    {msg.timestamp}
+                  </p>
+                </div>
+                {msg.isMe && (
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage
+                      src="/placeholder.svg?height=32&width=32"
+                      alt="Me"
+                    />
+                    <AvatarFallback>Me</AvatarFallback>
+                  </Avatar>
+                )}
               </div>
-              {msg.isMe && (
-                <Avatar className="w-8 h-8">
-                  <AvatarImage
-                    src="/placeholder.svg?height=32&width=32"
-                    alt="Me"
-                  />
-                  <AvatarFallback>Me</AvatarFallback>
-                </Avatar>
-              )}
-            </div>
-          </motion.div>
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
+            </motion.div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+      )}
 
       {/* Message Input */}
       <div className="sticky bottom-0 bg-white border-t p-4">

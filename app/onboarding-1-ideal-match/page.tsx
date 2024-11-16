@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Heart } from "lucide-react";
 import Link from "next/link";
+import Loading from "@/components/loading";
 
 export default function Component() {
   const [formData, setFormData] = useState({
@@ -26,9 +27,21 @@ export default function Component() {
       [field]: value,
     }));
   };
+  const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
+  useEffect(() => {
+    setTimeout(() => { // Simula una carga asíncrona
+      setIsLoading(false);
+    }, 300);
+  }, []);
+
 
   return (
     <div className="min-h-screen bg-white p-6">
+       {isLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <Loading />
+        </div>
+      ) : (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -117,7 +130,7 @@ export default function Component() {
             </Link>
           </motion.div>
         </motion.form>
-      </motion.div>
+      </motion.div>)}
     </div>
   );
 }

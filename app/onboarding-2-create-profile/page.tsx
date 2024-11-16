@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect,  useRef } from "react";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Heart, Upload, Plus, ImageIcon } from "lucide-react";
 import Link from "next/link";
+import Loading from "@/components/loading";
 
 export default function Component() {
   const [profile, setProfile] = useState({
@@ -59,8 +60,21 @@ export default function Component() {
     // Handle form submission
   };
 
+  const [isLoading, setIsLoading] = useState(true); // Estado para controlar la carga
+  useEffect(() => {
+    setTimeout(() => { // Simula una carga asíncrona
+      setIsLoading(false);
+    }, 300);
+  }, []);
+
+
   return (
     <div className="min-h-screen bg-white p-6">
+       {isLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <Loading />
+        </div>
+      ) : (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -255,7 +269,7 @@ export default function Component() {
           </div>
 
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Link href="/onboarding-3">
+            <Link href="/onboarding-3-loading">
               <Button
                 type="submit"
                 className="w-full h-12 bg-[#FF4081] hover:bg-[#FF6B6B] text-white rounded-full text-lg font-semibold"
@@ -265,7 +279,7 @@ export default function Component() {
             </Link>
           </motion.div>
         </motion.form>
-      </motion.div>
+      </motion.div>)}
     </div>
   );
 }
