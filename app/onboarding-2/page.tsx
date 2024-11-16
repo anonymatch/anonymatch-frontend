@@ -1,54 +1,63 @@
-'use client'
+"use client";
 
-import { useState, useRef } from 'react'
+import { useState, useRef } from "react";
 import { motion } from "motion/react";
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Heart, Upload, Plus, ImageIcon } from 'lucide-react'
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Heart, Upload, Plus, ImageIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Component() {
   const [profile, setProfile] = useState({
     profilePicture: null as File | null,
-    age: '',
-    location: '',
-    sexualOrientation: '',
-    relationshipPreference: '',
-    occupation: '',
-    mediaFiles: [] as File[]
-  })
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
-  const mediaInputRef = useRef<HTMLInputElement>(null)
+    age: "",
+    location: "",
+    sexualOrientation: "",
+    relationshipPreference: "",
+    occupation: "",
+    mediaFiles: [] as File[],
+  });
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const mediaInputRef = useRef<HTMLInputElement>(null);
 
-  const handleProfilePictureChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+  const handleProfilePictureChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = e.target.files?.[0];
     if (file) {
-      setProfile(prev => ({ ...prev, profilePicture: file }))
-      const reader = new FileReader()
+      setProfile((prev) => ({ ...prev, profilePicture: file }));
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviewUrl(reader.result as string)
-      }
-      reader.readAsDataURL(file)
+        setPreviewUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
     }
-  }
+  };
 
   const handleMediaAdd = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || [])
+    const files = Array.from(e.target.files || []);
     if (files.length + profile.mediaFiles.length <= 10) {
-      setProfile(prev => ({
+      setProfile((prev) => ({
         ...prev,
-        mediaFiles: [...prev.mediaFiles, ...files]
-      }))
+        mediaFiles: [...prev.mediaFiles, ...files],
+      }));
     }
-  }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Form submitted:', profile)
+    e.preventDefault();
+    console.log("Form submitted:", profile);
     // Handle form submission
-  }
+  };
 
   return (
     <div className="min-h-screen bg-white p-6">
@@ -58,7 +67,7 @@ export default function Component() {
         className="max-w-md mx-auto space-y-6"
       >
         {/* Logo */}
-           <div className="flex flex-col items-center space-y-2">
+        <div className="flex flex-col items-center space-y-2">
           <div className="relative w-40 h-40">
             <img
               src="/assets/logo.png"
@@ -68,28 +77,36 @@ export default function Component() {
           </div>
         </div>
 
-        <motion.form 
+        <motion.form
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
           onSubmit={handleSubmit}
           className="space-y-6"
         >
-          <h2 className="text-2xl font-bold text-gray-900">Create your profile</h2>
+          <h2 className="text-2xl font-bold text-gray-900">
+            Create your profile
+          </h2>
 
           {/* Profile Picture Upload */}
           <div className="space-y-2">
             <Label>Profile Picture or PFP</Label>
-            <div 
+            <div
               onClick={() => fileInputRef.current?.click()}
               className="relative h-40 bg-gray-50 border-2 border-dashed border-gray-200 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-[#FF4081] transition-colors"
             >
               {previewUrl ? (
-                <img src={previewUrl} alt="Profile preview" className="h-full w-full object-cover rounded-lg" />
+                <img
+                  src={previewUrl}
+                  alt="Profile preview"
+                  className="h-full w-full object-cover rounded-lg"
+                />
               ) : (
                 <div className="text-center">
                   <Upload className="mx-auto h-12 w-12 text-gray-400" />
-                  <p className="mt-2 text-sm text-gray-500">Click to upload profile picture</p>
+                  <p className="mt-2 text-sm text-gray-500">
+                    Click to upload profile picture
+                  </p>
                 </div>
               )}
               <input
@@ -110,7 +127,9 @@ export default function Component() {
               min="18"
               max="120"
               value={profile.age}
-              onChange={e => setProfile(prev => ({ ...prev, age: e.target.value }))}
+              onChange={(e) =>
+                setProfile((prev) => ({ ...prev, age: e.target.value }))
+              }
               className="bg-gray-50"
             />
           </div>
@@ -121,7 +140,9 @@ export default function Component() {
             <Input
               type="text"
               value={profile.location}
-              onChange={e => setProfile(prev => ({ ...prev, location: e.target.value }))}
+              onChange={(e) =>
+                setProfile((prev) => ({ ...prev, location: e.target.value }))
+              }
               className="bg-gray-50"
               placeholder="City, Country"
             />
@@ -131,7 +152,9 @@ export default function Component() {
           <div className="space-y-2">
             <Label>Sexual Orientation</Label>
             <Select
-              onValueChange={value => setProfile(prev => ({ ...prev, sexualOrientation: value }))}
+              onValueChange={(value) =>
+                setProfile((prev) => ({ ...prev, sexualOrientation: value }))
+              }
             >
               <SelectTrigger className="bg-gray-50">
                 <SelectValue placeholder="Select your orientation" />
@@ -152,13 +175,20 @@ export default function Component() {
           <div className="space-y-2">
             <Label>Relationship Preference</Label>
             <Select
-              onValueChange={value => setProfile(prev => ({ ...prev, relationshipPreference: value }))}
+              onValueChange={(value) =>
+                setProfile((prev) => ({
+                  ...prev,
+                  relationshipPreference: value,
+                }))
+              }
             >
               <SelectTrigger className="bg-gray-50">
                 <SelectValue placeholder="Select relationship type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="long-term">Long Term Relationship</SelectItem>
+                <SelectItem value="long-term">
+                  Long Term Relationship
+                </SelectItem>
                 <SelectItem value="casual">Casual Dating</SelectItem>
                 <SelectItem value="friendship">Friendship</SelectItem>
                 <SelectItem value="marriage">Marriage Minded</SelectItem>
@@ -172,7 +202,9 @@ export default function Component() {
             <Input
               type="text"
               value={profile.occupation}
-              onChange={e => setProfile(prev => ({ ...prev, occupation: e.target.value }))}
+              onChange={(e) =>
+                setProfile((prev) => ({ ...prev, occupation: e.target.value }))
+              }
               className="bg-gray-50"
               placeholder="Your occupation"
             />
@@ -222,19 +254,18 @@ export default function Component() {
             </div>
           </div>
 
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Button
-              type="submit"
-              className="w-full h-12 bg-[#FF4081] hover:bg-[#FF6B6B] text-white rounded-full text-lg font-semibold"
-            >
-              Submit
-            </Button>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Link href="/onboarding-3">
+              <Button
+                type="submit"
+                className="w-full h-12 bg-[#FF4081] hover:bg-[#FF6B6B] text-white rounded-full text-lg font-semibold"
+              >
+                Submit
+              </Button>
+            </Link>
           </motion.div>
         </motion.form>
       </motion.div>
     </div>
-  )
+  );
 }
