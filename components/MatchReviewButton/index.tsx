@@ -74,7 +74,7 @@ const handlePay = async () => {
 export const MatchReviewButton = () => {
   return (
     <Button
-      className="w-full bg-[#FF4081] hover:bg-[#FF6B6B] text-white"
+      className="w-full h-12 bg-[#FF4081] hover:bg-[#FF6B6B] text-white rounded-full text-lg font-semibold"
       variant="outline"
       onClick={handlePay}
     >

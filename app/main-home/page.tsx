@@ -59,6 +59,7 @@ export default function Component() {
               <AvatarImage
                 src={data.user.avatar}
                 alt="Revilla"
+                className="object-cover"
               />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
