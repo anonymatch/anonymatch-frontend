@@ -71,7 +71,7 @@ export const VerifyBlock = () => {
     <div>
       <h1>Verify Block</h1>
       <button className="bg-green-500 p-4" onClick={handleVerify}>
-        Test Verify
+        Test Verify V2
       </button>
       <span>{JSON.stringify(handleVerifyResponse, null, 2)}</span>
     </div>

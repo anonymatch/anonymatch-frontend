@@ -10,7 +10,8 @@ const sendPayment = async () => {
   try {
     const res = await fetch(`/api/initiate-payment`, {
       method: "POST",
-    });
+      });
+    console.log('🚀 ~ sendPayment ~ res:', res)
 
     const { id } = await res.json();
 
