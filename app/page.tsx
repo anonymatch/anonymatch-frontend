@@ -47,7 +47,7 @@ export default function Component() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <Link href="/onboarding">
+          <Link href="/onboarding-1">
             <Button
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
