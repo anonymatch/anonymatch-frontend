@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Home, MessageSquare, User, Settings } from 'lucide-react'
-import Link from "next/link"
-import Image from "next/image"
-import BottomNavigation from "@/components/BottomNavigation"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Home, MessageSquare, User, Settings } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import BottomNavigation from "@/components/BottomNavigation";
 
 export default function Component() {
   return (
@@ -26,7 +26,10 @@ export default function Component() {
           {/* Profile Section */}
           <div className="flex flex-col items-center space-y-2">
             <Avatar className="w-24 h-24 border-4 border-[#FF4081]">
-              <AvatarImage src="/placeholder.svg?height=96&width=96" alt="John Doe" />
+              <AvatarImage
+                src="/placeholder.svg?height=96&width=96"
+                alt="John Doe"
+              />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <div className="text-center">
@@ -44,14 +47,14 @@ export default function Component() {
                   name: "Jane",
                   age: 28,
                   bio: "Loves hiking and reading",
-                  image: "/placeholder.svg?height=300&width=400"
+                  image: "/placeholder.svg?height=300&width=400",
                 },
                 {
                   name: "Emily",
                   age: 25,
                   bio: "Enjoys cooking and traveling",
-                  image: "/placeholder.svg?height=300&width=400"
-                }
+                  image: "/placeholder.svg?height=300&width=400",
+                },
               ].map((match, index) => (
                 <Card key={index} className="overflow-hidden">
                   <CardContent className="p-0">
@@ -66,12 +69,16 @@ export default function Component() {
                     <div className="p-4">
                       <div className="flex items-center justify-between">
                         <div>
-                          <h4 className="font-semibold">{match.name}, {match.age}</h4>
+                          <h4 className="font-semibold">
+                            {match.name}, {match.age}
+                          </h4>
                           <p className="text-sm text-gray-500">{match.bio}</p>
                         </div>
-                        <Button className="bg-[#FF4081] hover:bg-[#FF6B6B]">
-                          View Profile
-                        </Button>
+                        <Link href="/match-profile">
+                          <Button className="bg-[#FF4081] hover:bg-[#FF6B6B]">
+                            View Profile
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </CardContent>
@@ -92,14 +99,14 @@ export default function Component() {
                   name: "Anna",
                   age: 27,
                   description: "Had a great time at the beach",
-                  image: "/placeholder.svg?height=200&width=200"
+                  image: "/placeholder.svg?height=200&width=200",
                 },
                 {
                   name: "Michael",
                   age: 30,
                   description: "Went to a concert",
-                  image: "/placeholder.svg?height=200&width=200"
-                }
+                  image: "/placeholder.svg?height=200&width=200",
+                },
               ].map((date, index) => (
                 <Card key={index} className="overflow-hidden">
                   <CardContent className="p-0">
@@ -112,8 +119,12 @@ export default function Component() {
                       />
                     </div>
                     <div className="p-3">
-                      <h4 className="font-semibold">{date.name}, {date.age}</h4>
-                      <p className="text-xs text-gray-500">{date.description}</p>
+                      <h4 className="font-semibold">
+                        {date.name}, {date.age}
+                      </h4>
+                      <p className="text-xs text-gray-500">
+                        {date.description}
+                      </p>
                     </div>
                   </CardContent>
                 </Card>
@@ -125,7 +136,6 @@ export default function Component() {
 
       {/* Bottom Navigation */}
       <BottomNavigation activePath="/main-home" />
-
     </div>
-  )
+  );
 }
