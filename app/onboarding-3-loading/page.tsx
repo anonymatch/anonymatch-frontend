@@ -11,7 +11,7 @@ export default function Component() {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push('/main-home');
-    }, 3000); // 3000 milliseconds = 3 seconds
+    }, 5000); // 3000 milliseconds = 3 seconds
 
     return () => clearTimeout(timer); // Clear timeout if the component unmounts
   }, [, router]);

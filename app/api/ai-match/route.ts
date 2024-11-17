@@ -1,6 +1,4 @@
 import { areUsersSimilar } from "@/ai/actions";
-import { auth } from "@/app/(auth)/auth";
-import { getChatsByUserId } from "@/db/queries";
 
 export async function GET() {
   // TODO: get users from DB
